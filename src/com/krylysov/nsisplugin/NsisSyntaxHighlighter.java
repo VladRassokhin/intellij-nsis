@@ -3,17 +3,15 @@ package com.krylysov.nsisplugin;
 import com.intellij.lexer.FlexAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
+import com.intellij.openapi.editor.HighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
-import com.intellij.openapi.editor.markup.TextAttributes;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.IElementType;
 import com.krylysov.nsisplugin.psi.NsisTypes;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
-import java.io.Reader;
-
+import static com.intellij.openapi.editor.colors.TextAttributesKey.EMPTY_ARRAY;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
 public class NsisSyntaxHighlighter extends SyntaxHighlighterBase {
@@ -27,17 +25,17 @@ public class NsisSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey INSTRUCTION = createTextAttributesKey("NSIS_INSTRUCTION", DefaultLanguageHighlighterColors.FUNCTION_CALL);
     public static final TextAttributesKey CONSTANT = createTextAttributesKey("NSIS_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
     public static final TextAttributesKey SPECIAL_SYMBOL = createTextAttributesKey("NSIS_SPECIAL_SYMBOL", DefaultLanguageHighlighterColors.OPERATION_SIGN);
-    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("NSIS_BAD_CHARACTER", new TextAttributes(Color.RED, null, null, null, Font.BOLD));
+    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("NSIS_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER);
 
     @NotNull
     @Override
     public Lexer getHighlightingLexer() {
-        return new FlexAdapter(new NsisLexer((Reader) null));
+        return new FlexAdapter(new NsisLexer(null));
     }
 
     @NotNull
     @Override
-    public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
+    public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(NsisTypes.STRING)) {
             return pack(STRING);
         } else if (tokenType.equals(NsisTypes.NUMBER)) {
@@ -61,7 +59,7 @@ public class NsisSyntaxHighlighter extends SyntaxHighlighterBase {
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
             return pack(BAD_CHARACTER);
         } else {
-            return EMPTY;
+            return EMPTY_ARRAY;
         }
     }
 }

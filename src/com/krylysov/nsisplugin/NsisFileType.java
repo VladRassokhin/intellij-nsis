@@ -1,7 +1,7 @@
 package com.krylysov.nsisplugin;
 
+import com.intellij.openapi.fileTypes.FileTypes;
 import com.intellij.openapi.fileTypes.LanguageFileType;
-import com.intellij.openapi.fileTypes.StdFileTypes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,6 +35,6 @@ public class NsisFileType extends LanguageFileType {
     @Nullable
     @Override
     public Icon getIcon() {
-        return StdFileTypes.PLAIN_TEXT.getIcon();
+        return FileTypes.PLAIN_TEXT.getIcon();
     }
 }

@@ -18,6 +18,13 @@ public class NsisColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Instruction", NsisSyntaxHighlighter.INSTRUCTION),
             new AttributesDescriptor("String", NsisSyntaxHighlighter.STRING),
             new AttributesDescriptor("Number", NsisSyntaxHighlighter.NUMBER),
+            new AttributesDescriptor("Identifier", NsisSyntaxHighlighter.IDENTIFIER),
+            new AttributesDescriptor("Comment", NsisSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("Block declaration", NsisSyntaxHighlighter.BLOCK_DECLARATION),
+            new AttributesDescriptor("Keyword", NsisSyntaxHighlighter.KEYWORD),
+            new AttributesDescriptor("Constant", NsisSyntaxHighlighter.CONSTANT),
+            new AttributesDescriptor("Special symbol", NsisSyntaxHighlighter.SPECIAL_SYMBOL),
+            new AttributesDescriptor("Bad character", NsisSyntaxHighlighter.BAD_CHARACTER),
     };
 
     @Nullable
@@ -50,13 +57,13 @@ public class NsisColorSettingsPage implements ColorSettingsPage {
 
     @NotNull
     @Override
-    public AttributesDescriptor[] getAttributeDescriptors() {
+    public AttributesDescriptor @NotNull [] getAttributeDescriptors() {
         return DESCRIPTORS;
     }
 
     @NotNull
     @Override
-    public ColorDescriptor[] getColorDescriptors() {
+    public ColorDescriptor @NotNull [] getColorDescriptors() {
         return ColorDescriptor.EMPTY_ARRAY;
     }
 

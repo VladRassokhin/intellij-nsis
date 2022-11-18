@@ -1,29 +1,36 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.krylysov.nsisplugin</id>
-  <name>NSIS plugin</name>
-  <version>0.2.0</version>
+  <name>NSIS</name>
+  <version>0.2.1</version>
   <vendor email="artem@krylysov.com" url="https://github.com/akrylysov/intellij-nsis">Artem Krylysov</vendor>
 
   <description><![CDATA[
-    NSIS syntax highlighting plugin
+    Provides NSIS syntax highlighting for IntelliJ IDEs
     ]]></description>
 
   <change-notes><![CDATA[
-      Initial version.
+    <h3>0.2.1</h3>
+    <p><ul>
+      <li>Update for dynamic plugins</li>
+    </ul></p>
+    <h3>0.2.0</h3>
+    <p><ul>
+      <li>Initial version.</li>
+    </ul></p>
     ]]>
   </change-notes>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="131"/>
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+  <idea-version since-build="221"/>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
        on how to target different products -->
 
   <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.krylysov.nsisplugin.NsisFileTypeFactory"/>
-    <lang.syntaxHighlighterFactory key="nsis" implementationClass="com.krylysov.nsisplugin.NsisSyntaxHighlighterFactory"/>
+    <fileType name="NSIS script" language="nsis" extensions="nsi;nsh" implementationClass="com.krylysov.nsisplugin.NsisFileType"/>
+    <lang.syntaxHighlighterFactory language="nsis" implementationClass="com.krylysov.nsisplugin.NsisSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.krylysov.nsisplugin.NsisColorSettingsPage"/>
   </extensions>
 
