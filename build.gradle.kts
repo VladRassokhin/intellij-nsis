@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.intellij") version "1.10.0"
+    id("org.jetbrains.grammarkit") version "2021.2.2"
 }
 
 repositories {
@@ -15,6 +16,14 @@ intellij {
 tasks {
     buildSearchableOptions {
         enabled = false
+    }
+    generateLexer {
+        source.set("src/com/krylysov/nsisplugin/Nsis.flex")
+        targetClass.set("NsisLexer")
+        targetDir.set("gen/com/krylysov/nsisplugin")
+    }
+    compileJava {
+        dependsOn(generateLexer)
     }
 }
 
