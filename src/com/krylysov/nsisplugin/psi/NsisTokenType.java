@@ -12,6 +12,6 @@ public class NsisTokenType extends IElementType {
 
     @Override
     public String toString() {
-        return "com.krylysov.nsisplugin.psi.NsisTokenType." + super.toString();
+        return "NSIS_" + super.toString();
     }
 }
