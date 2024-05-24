@@ -1,6 +1,6 @@
 plugins {
-    id("org.jetbrains.intellij") version "1.10.0"
-    id("org.jetbrains.grammarkit") version "2021.2.2"
+    id("org.jetbrains.intellij") version "1.17.3"
+    id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
 
 repositories {
@@ -8,7 +8,7 @@ repositories {
 }
 
 intellij {
-    version.set("2021.2.2")
+    version.set("2023.3")
     updateSinceUntilBuild.set(false)
     sameSinceUntilBuild.set(false)
 }
@@ -18,9 +18,9 @@ tasks {
         enabled = false
     }
     generateLexer {
-        source.set("src/com/krylysov/nsisplugin/Nsis.flex")
-        targetClass.set("NsisLexer")
-        targetDir.set("gen/com/krylysov/nsisplugin")
+        val pkg = "com/krylysov/nsisplugin"
+        sourceFile.set(file("src/$pkg/Nsis.flex"))
+        targetOutputDir.set(file("gen/$pkg"))
     }
     compileJava {
         dependsOn(generateLexer)
@@ -29,7 +29,7 @@ tasks {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
